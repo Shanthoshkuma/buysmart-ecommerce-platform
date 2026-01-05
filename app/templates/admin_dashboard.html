@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h2>Admin Dashboard</h2>
+    <p class="admin-welcome">
+        Welcome back, <strong>{{ admin.email }}</strong>
+    </p>
+</div>
+
+<div class="admin-dashboard">
+    <a class="admin-card" href="/admin/order">
+        <h3>📦 Orders</h3>
+        <p>View and manage customer orders</p>
+    </a>
+
+    <a class="admin-card" href="/admin/product">
+        <h3>🛍 Products</h3>
+        <p>Add, edit, and manage products</p>
+    </a>
+
+    <a class="admin-card" href="/admin/manage_user">
+        <h3>👤 Users</h3>
+        <p>Manage registered users</p>
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Cart | MyShop{% endblock %}
+
+{% block content %}
+<div class="cart-container">
+
+
+    {% if not user %}
+<div class="cart-container" style="text-align:center">
+    <h2>Please login to view your cart</h2>
+    <p>You must be logged in to add or view cart items.</p>
+
+
+</div>
+    {% elif cart |length == 0 %}
+        <p class="empty-cart">Your cart is empty.</p>
+    {% else %}
+        <h2>Your Cart</h2>
+        <table class="cart-table" >
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+
+            {% for item in cart %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>₹{{ item.price }}</td>
+
+                <td>
+                    <form action="/cart/update/{{ item.id }}" method="post" >
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="0" class="cart-int">
+                        <button type="submit" class="cart-btn">Update</button>
+                    </form>
+                </td>
+
+                <td>₹{{ item.item_total }}</td>
+
+                <td>
+                    <form action="/cart/delete/{{ item.id }}" method="post">
+                        <button type="submit" class="cart-btn">Remove</button>
+                    </form>
+                </td>
+
+
+            </tr>
+            {% endfor %}
+
+            <form action="/order/place" method="post">
+                <button type="submit" class="btn">Place Order</button>
+            </form>
+        </table>
+
+        <h3 style="text-align:right; margin-top:20px;">
+            Total: ₹{{ total_price }}
+        </h3>
+
+    {% endif %}
+</div>
+{% endblock %}

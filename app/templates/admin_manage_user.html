@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Users Management{% endblock %}
+
+{% block content %}
+
+<div class="admin-header">
+    <h2>User Management for BuySmart</h2>
+    <p class="admin-welcome">
+        Manage registered users, roles, and account status
+    </p>
+</div>
+
+{% if show_user | length == 0 %}
+    <p>No users found.</p>
+{% else %}
+
+<table class="cart-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in show_user %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <span class="role-badge {{ user.role }}">
+                    {{ user.role | capitalize }}
+                </span>
+            </td>
+            <td>
+                {% if user.is_active %}
+                    <span class="status-active">Active</span>
+                {% else %}
+                    <span class="status-inactive">Inactive</span>
+                {% endif %}
+            </td>
+            <td>
+                {{ user.created_at.strftime('%d %b %Y') if user.created_at else 'N/A' }}
+            </td>
+
+        
+            <td>
+                <form action="/admin/manage_user/{{user.id}}" method="post">
+                    <button type="submit" class="btn">Remove User</button>
+                </form>
+            </td>
+      
+        </tr>
+       
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+
+{% endblock %}

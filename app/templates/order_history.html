@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title%} My Order {% endblock %}
+
+{% block content%}
+
+
+{% if not user  %}
+<div class="cart-container" style="text-align:center">
+    <h2>Please login to view your Order</h2>
+    <p>You must be logged in to view order items.</p>
+
+</div>
+{% elif orders|length ==0 %}
+<p>You have not placed any orders</p>
+{% else %}
+<h2>My Orders</h2>
+<table class="cart-table">
+    <tr>
+        <th>Order ID</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>View</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+        <td>{{order.id}}</td>
+        <td>{{ order.created_at.strftime('%d %b %Y') if order.created_at else 'N/A' }}</td>
+        <td>{{order.total_amount}}</td>
+        <td>{{order.status}}</td>
+        <td>
+            <a href="/order/{{order.id}}" class="btn">View</a>
+        </td>
+    </tr>
+    {%endfor%}
+</table>
+{%endif%}
+{%endblock%}

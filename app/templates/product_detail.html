@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{%block title%} {{show_product.name}} | MyShop {%endblock%}
+
+{%block content%}
+
+<div class="product-detail">
+
+    <div class="product-image">
+        <img src="{{show_product.image_url}}" alt="{{show_product.name}}">
+    </div>
+
+    <div class="product-info">
+        <h2>{{show_product.name}}</h2>
+        <p>{{ show_product.description }}</p>
+        <p class="price">₹{{ show_product.price }}</p>
+        <form action="/cart/add/{{show_product.id}}" method="post">
+        <button type="submit" class="btn">Add to Cart</button>
+    </form>
+    </div>
+</div>
+{%endblock%}

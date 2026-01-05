@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Orders{% endblock %}
+
+{% block content %}
+
+<h2>Manage Order</h2>
+
+<table class="cart-table">
+    <tr>
+        <th>Order ID</th>
+        <th>User ID</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>View</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+        <td>{{order.id}}</td>
+        <td>{{ order.user_id }}</td>
+        <td>₹{{ order.total_amount }}</td>
+        <td>{{ order.status }}</td>
+        <td><a href="/admin/order/{{order.id}}">View Order</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+{% endblock %}
