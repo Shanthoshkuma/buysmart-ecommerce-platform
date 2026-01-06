@@ -62,7 +62,7 @@ async def login(form_data:OAuth2PasswordRequestForm = Depends(),db:Session = Dep
  
     access_token = create_access_token(data = {'sub':validate_user.email})
 
-    response = RedirectResponse(url= "/admin/dashboard" if validate_user.role == "admin" else "/",status_code=HTTP_303_SEE_OTHER)
+    response = RedirectResponse(url= "/admin/dashboard" if validate_user.role == "admin" else "/products",status_code=HTTP_303_SEE_OTHER)
 
     response.set_cookie(key = "access_token", value = access_token, httponly = True)
 

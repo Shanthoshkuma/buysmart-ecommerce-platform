@@ -23,6 +23,12 @@ templates = Jinja2Templates(directory = "app/templates")
 def startup():
     Base.metadata.create_all(bind=engine)
 
+
+@app.get("/")
+def root():
+    return RedirectResponse(url="/products")
+
+
 app.mount("/static",StaticFiles(directory="app/static"), name="static")
 
 

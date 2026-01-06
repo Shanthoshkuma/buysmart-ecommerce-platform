@@ -5,7 +5,7 @@ from datetime import datetime
 
 class Category(Base):
     __tablename__ = "categories"
-    __table_args__ = {"schema": "public"}
+    
 
 
     id = Column(Integer,primary_key=True,index=True)

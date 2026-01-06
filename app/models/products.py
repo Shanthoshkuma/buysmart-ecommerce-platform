@@ -2,12 +2,12 @@ from sqlalchemy import Column , Integer, String, Boolean, TIMESTAMP, ForeignKey,
 from sqlalchemy.orm import relationship
 from app.database import Base
 class Product(Base):
-    __tablename__ = 'products'
-    __table_args__ = {"schema": "public"}
+    __tablename__ = 'products' 
+    
 
 
     id = Column(Integer, primary_key=True,index=True)
-    category_id = Column(Integer,ForeignKey("public.categories.id"),nullable = False)
+    category_id = Column(Integer,ForeignKey("categories.id"),nullable = False)
     name = Column(String(150), nullable = False)
     description = Column(Text)
     price = Column(DECIMAL(10,2),nullable = False)

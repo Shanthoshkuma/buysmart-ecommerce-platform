@@ -5,11 +5,11 @@ from sqlalchemy.sql import func
 
 class Order(Base):
     __tablename__ = 'orders'
-    __table_args__ = {"schema": "public"}
+   
 
 
     id = Column(Integer,primary_key=True,index=True)
-    user_id = Column(Integer,ForeignKey("public.users.id"),nullable = False)
+    user_id = Column(Integer,ForeignKey("users.id"),nullable = False)
     total_amount = Column(DECIMAL(10,2),nullable=False)
     status= Column(String(20),default='pending')
     created_at = Column(
