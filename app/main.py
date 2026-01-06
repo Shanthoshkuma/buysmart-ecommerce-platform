@@ -19,7 +19,7 @@ app = FastAPI(title="ecommerce")
 
 templates = Jinja2Templates(directory = "app/templates")
 
-Base.metadata.create_all(bind=engine)
+
 
 
 app.mount("/static",StaticFiles(directory="app/static"), name="static")
