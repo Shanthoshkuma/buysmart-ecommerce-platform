@@ -8,7 +8,7 @@ from fastapi.templating import Jinja2Templates
 
 
 
-router = APIRouter()
+router = APIRouter(prefix="/user", tags=["Products"])
 
 templates = Jinja2Templates(directory="app/templates")  
 
@@ -32,7 +32,7 @@ def home_product(request:Request, db: db_dependency,page: int = 1,):
     return templates.TemplateResponse("home.html",{"request":request,"products":sample_products})
 
 
-@router.get("/products/{id}")
+@router.get("/{id}")
 def get_product(request:Request,id:int,db:db_dependency):
 
     get_product = db.query(Product).filter(Product.id == id).first()
