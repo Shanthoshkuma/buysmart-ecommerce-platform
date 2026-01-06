@@ -8,7 +8,7 @@ from fastapi.templating import Jinja2Templates
 
 
 
-router = APIRouter(prefix="/user", tags=["Products"])
+router = APIRouter(prefix="/products", tags=["Products"])
 
 templates = Jinja2Templates(directory="app/templates")  
 
