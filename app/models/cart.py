@@ -5,10 +5,11 @@ from app.database import Base
 
 class Cart(Base):
     __tablename__ = "cart"
+    __table_args__ = {"schema": "public"}
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    product_id = Column(Integer, ForeignKey("products.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("public.users.id"), nullable=False)
+    product_id = Column(Integer, ForeignKey("public.products.id"), nullable=False)
     quantity = Column(Integer, default=1)
     created_at = Column(TIMESTAMP)
 

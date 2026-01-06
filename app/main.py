@@ -21,7 +21,6 @@ templates = Jinja2Templates(directory = "app/templates")
 
 
 
-
 app.mount("/static",StaticFiles(directory="app/static"), name="static")
 
 
