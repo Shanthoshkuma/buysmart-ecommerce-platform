@@ -19,7 +19,9 @@ app = FastAPI(title="ecommerce")
 
 templates = Jinja2Templates(directory = "app/templates")
 
-
+@app.on_event("startup")
+def startup():
+    Base.metadata.create_all(bind=engine)
 
 app.mount("/static",StaticFiles(directory="app/static"), name="static")
 
