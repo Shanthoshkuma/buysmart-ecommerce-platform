@@ -1,7 +1,13 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy import text
 
+with engine.connect() as conn:
+    db_name = conn.execute(text("SELECT current_database()")).scalar()
+    schema = conn.execute(text("SELECT current_schema()")).scalar()
+    print("CONNECTED DATABASE =", db_name)
+    print("CURRENT SCHEMA =", schema)
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if not DATABASE_URL:
