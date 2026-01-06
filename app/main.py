@@ -52,10 +52,10 @@ def db_test():
 
     
 app.include_router(auth_router)
-app.include_router(admin_router)
-app.include_router(admin_product_router)
-app.include_router(user_router)
-app.include_router(product_router)
+app.include_router(product_router)   # 🔥 MOVE THIS UP
 app.include_router(cart_router)
 app.include_router(order_router)
+app.include_router(user_router)
+app.include_router(admin_router)
+app.include_router(admin_product_router)
 app.include_router(admin_order_router)
