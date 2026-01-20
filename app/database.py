@@ -1,8 +1,9 @@
 import os
-from sqlalchemy import create_engine
+from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, declarative_base
-from sqlalchemy import text
 
+load_dotenv()  # 👈 THIS WAS MISSING
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
@@ -20,5 +21,6 @@ with engine.connect() as conn:
     schema = conn.execute(text("SELECT current_schema()")).scalar()
     print("CONNECTED DATABASE =", db_name)
     print("CURRENT SCHEMA =", schema)
+
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 Base = declarative_base()
